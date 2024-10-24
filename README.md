@@ -6,9 +6,9 @@ Apache Netbeans IDE 23
 Java JDK 23
 
 ## DBMS utilizado
-XAMPP 8.2.4
-Versión del cliente de base de datos: libmysql - mysqlnd 8.2.4
-Versión del servidor: 10.4.28-MariaDB - mariadb.org binary distribution
+XAMPP 8.2.4  
+Versión del cliente de base de datos: libmysql - mysqlnd 8.2.4  
+Versión del servidor: 10.4.28-MariaDB - mariadb.org binary distribution  
 phpMyAdmin 5.2.1
 
 ## Para iniciar la aplicación
