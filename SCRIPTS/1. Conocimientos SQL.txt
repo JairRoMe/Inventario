@@ -1,0 +1,23 @@
+1. Describe el funcionamiento general de la sentencia JOIN.
+La sentencia JOIN se utiliza para combinar filas de dos o más tablas en una base de datos relacional mediante una condición de coincidencia, por ejemplo, la coincidencia de la llave foránea de una tabla con la llave primaria de otra tabla, siendo estas la relación entre ambas tablas.
+
+2. ¿Cuáles son los tipos de JOIN y cuál es el funcionamiento de los mismos?
+INNER JOIN. Devuelve solo las filas que tienen coincidencias en ambas tablas. Si no hay coincidencia la fila no se incluye en el resultado.
+LEFT JOIN. Devuelve todas las filas de la tabla de la izquierda (indicada con la palabra FROM) y las filas coincidentes de la tabla de la derecha. Si no hay coincidencia se rellena con NULL en las columnas de la tabla de la derecha.
+RIGHT JOIN. Devuelve todas las filas de la tabla de la derecha (indicada con la sentencia JOIN) y las filas coincidentes de la tabla de la izquierda. Si no hay coincidencia se rellena con NULL en las columnas de la tabla de la izquierda.
+FULL OUTER JOIN. Devuelve todas las filas de ambas tablas, rellenando con NULL donde no haya coincidencias.
+
+3. ¿Cuál es el funcionamiento de los TRIGGER y qué propósito tienen?
+Los TRIGGER son objetos de la base de datos que se ejecutan automáticamente en respuesta a ciertos eventos de una tabla, como lo son el uso de las consultas INSERT, UPDATE y DELETE. Su principal uso es el de auditorias, para llevar un registro de las acciones realizadas en la base de datos que se realice de manera automática al recibir ciertas consultas.
+
+4. ¿Qué es y para qué sirve un STORED PROCEDURE?
+Es un conjunto predefinido de instrucciones SQL que se almacena en la base de datos y se puede ejecutar como una única unidad, permitiendo a los desarrolladores encapsular cierta lógica compleja y reducir la cantidad de tráfico entre aplicación y base de datos, pues los calculos se están realizando por la base de datos en lugar de ser enviados a la aplicación, calculados en la aplicación y devueltos a la base de datos. De esta manera también se reduce la repetición de código pues al ser una responsabilidad asignada a la base de datos, los usuarios de distintas aplicaciones que utilicen sus servicios no tienen que estar implementando la misma lógica para cada aplicación que lo requiera.
+
+5. Traer todos los productos que tengan una venta.
+SELECT p.nombre FROM ventas AS v LEFT JOIN productos AS p ON v.idProducto = p.idProducto GROUP BY p.nombre;
+
+6. Traer todos los productos que tengan ventas y la cantidad total de productos vendidos.
+SELECT p.nombre, SUM(v.cantidad) AS cantidad FROM ventas AS v LEFT JOIN productos AS p ON v.idProducto = p.idProducto GROUP BY p.nombre;
+
+7. Traer todos los productos (independientemente de si tienen ventas o no) y la suma total ($) vendida por producto.
+SELECT p.nombre, COALESCE(SUM(v.cantidad * p.precio), 0) AS cantidad FROM ventas AS v RIGHT JOIN productos AS p ON v.idProducto = p.idProducto GROUP BY p.nombre;
